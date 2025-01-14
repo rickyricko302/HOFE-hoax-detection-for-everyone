@@ -7,6 +7,6 @@ class ApiService {
 
   static String baseUrl = 'https://api-cc-hofe.vercel.app/api';
 
-  static String urlLogin = '$baseUrl/auth/login';
   static String urlRegister = '$baseUrl/auth/register';
+  static String urlLogin = '$baseUrl/auth/login';
 }

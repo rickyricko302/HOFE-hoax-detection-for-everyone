@@ -4,28 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hofe/data/constant.dart';
-import 'package:hofe/features/auth/data/model/register_model_post.dart';
-import 'package:hofe/features/auth/presentation/views/login_page.dart';
-import 'package:hofe/shared-widgets/nunito_text.dart';
-import 'package:hofe/shared-widgets/primary_button.dart';
-import 'package:hofe/shared-widgets/text_field_forms.dart';
-import 'package:hofe/utils/toast_helper.dart';
+import 'package:hofe/features/auth/data/model/login_model_post.dart';
+import 'package:hofe/features/auth/presentation/bloc/login/bloc/login_bloc.dart';
+import 'package:hofe/features/auth/presentation/views/register_page.dart';
+import 'package:hofe/router.dart';
 
+import '../../../../data/constant.dart';
+import '../../../../shared-widgets/nunito_text.dart';
 import '../../../../shared-widgets/password_field_forms.dart';
+import '../../../../shared-widgets/primary_button.dart';
+import '../../../../shared-widgets/text_field_forms.dart';
+import '../../../../utils/toast_helper.dart';
 import '../bloc/register/register_bloc.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
-  static const routeName = 'register';
-
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+  static String routeName = '/login';
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
-  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -44,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
             const Gap(64),
             const Center(
               child: NunitoText(
-                text: 'Buat Akun',
+                text: 'Masuk',
                 fontSize: 32,
                 color: primary,
                 fontWeight: FontWeight.bold,
@@ -66,11 +66,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Column(
                     children: [
                       MyFormField(
-                          name: 'Username',
-                          controller: usernameController,
-                          isRequired: true),
-                      const Gap(16),
-                      MyFormField(
                           name: 'Email',
                           controller: emailController,
                           textInputType: TextInputType.emailAddress,
@@ -83,12 +78,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           inputAction: TextInputAction.done,
                           isRequired: true),
                       const Gap(32),
-                      BlocBuilder<RegisterBloc, RegisterState>(
+                      BlocBuilder<LoginBloc, LoginState>(
                         builder: (context, state) {
                           return PrimaryButton(
-                            text: 'Mendaftar',
-                            onClick: submitRegister,
-                            isLoading: state is RegisterLoading,
+                            text: 'Masuk',
+                            onClick: submitLogin,
+                            isLoading: state is LoginLoading,
                           );
                         },
                       ),
@@ -97,15 +92,15 @@ class _RegisterPageState extends State<RegisterPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const NunitoText(
-                              text: 'sudah punya akun?', fontSize: 14),
+                              text: 'belum punya akun?', fontSize: 14),
                           InkWell(
                             onTap: () {
-                              context.pop();
+                              context.pushNamed(RegisterPage.routeName);
                             },
                             child: const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 4),
                               child: NunitoText(
-                                text: 'Masuk',
+                                text: 'Daftar',
                                 fontSize: 14,
                                 color: primary,
                               ),
@@ -118,12 +113,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-            BlocListener<RegisterBloc, RegisterState>(
+            BlocListener<LoginBloc, LoginState>(
               listener: (context, state) {
                 log(state.toString());
-                if (state is RegisterSuccess) {
+                if (state is LoginSuccess) {
                   ToastHelper.showSuccess(message: 'Berhasil mendaftar.');
-                } else if (state is RegisterFailed) {
+                } else if (state is LoginFailed) {
                   ToastHelper.showError(message: state.exception.messageError);
                 }
               },
@@ -135,14 +130,12 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void submitRegister() {
+  void submitLogin() {
     final bool isFormFilled = formKey.currentState?.validate() ?? false;
     if (isFormFilled) {
-      final RegisterModelPost data = RegisterModelPost(
-          username: usernameController.text,
-          email: emailController.text,
-          password: passwordController.text);
-      context.read<RegisterBloc>().add(OnRegister(data: data));
+      final LoginModelPost data = LoginModelPost(
+          email: emailController.text, password: passwordController.text);
+      context.read<LoginBloc>().add(OnLogin(data: data));
     }
   }
 }
