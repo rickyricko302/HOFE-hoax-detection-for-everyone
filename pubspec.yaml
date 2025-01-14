@@ -1,0 +1,30 @@
+name: hofe
+description: "A new Flutter project."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.4.1 <4.0.0"
+
+dependencies:
+  cached_network_image: ^3.4.1
+  dartz: ^0.10.1
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_svg: ^2.0.16
+  fluttertoast: ^8.2.10
+  gap: ^3.0.1
+  get_it: ^8.0.3
+  go_router: ^14.6.2
+  google_fonts: ^6.2.1
+  http: ^1.2.2
+  shared_preferences: ^2.3.3
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
