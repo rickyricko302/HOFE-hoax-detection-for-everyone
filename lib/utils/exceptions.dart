@@ -44,6 +44,10 @@ class BadRequestException extends AppException {
   BadRequestException({required super.messageError});
 }
 
+class NotFoundException extends AppException {
+  NotFoundException() : super(messageError: 'Url tidak ditemukan');
+}
+
 AppException generateException(
     {required http.Response response, required Map<String, dynamic> json}) {
   if (response.statusCode == 400) {
@@ -53,6 +57,8 @@ AppException generateException(
       return AccountBlockedException(messageError: json['message']);
     }
     return UnauthorizedException(messageError: json['message'] ?? '-');
+  } else if (response.statusCode == 404) {
+    return NotFoundException();
   } else if (response.statusCode == 422) {
     String messageError = '';
     if (json.containsKey('errors')) {

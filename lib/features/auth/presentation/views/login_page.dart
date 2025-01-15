@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hofe/features/auth/data/model/login_model_post.dart';
 import 'package:hofe/features/auth/presentation/bloc/login/bloc/login_bloc.dart';
 import 'package:hofe/features/auth/presentation/views/register_page.dart';
-import 'package:hofe/router.dart';
 
 import '../../../../data/constant.dart';
 import '../../../../shared-widgets/nunito_text.dart';
@@ -15,7 +14,6 @@ import '../../../../shared-widgets/password_field_forms.dart';
 import '../../../../shared-widgets/primary_button.dart';
 import '../../../../shared-widgets/text_field_forms.dart';
 import '../../../../utils/toast_helper.dart';
-import '../bloc/register/register_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -115,9 +113,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             BlocListener<LoginBloc, LoginState>(
               listener: (context, state) {
-                log(state.toString());
                 if (state is LoginSuccess) {
-                  ToastHelper.showSuccess(message: 'Berhasil mendaftar.');
+                  ToastHelper.showSuccess(message: 'Autentikasi Berhasil.');
                 } else if (state is LoginFailed) {
                   ToastHelper.showError(message: state.exception.messageError);
                 }
@@ -135,6 +132,7 @@ class _LoginPageState extends State<LoginPage> {
     if (isFormFilled) {
       final LoginModelPost data = LoginModelPost(
           email: emailController.text, password: passwordController.text);
+      FocusScope.of(context).unfocus();
       context.read<LoginBloc>().add(OnLogin(data: data));
     }
   }

@@ -7,6 +7,7 @@ import 'package:hofe/injection.dart';
 import 'package:hofe/router.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initGetIt();
   runApp(const MainApp());
 }

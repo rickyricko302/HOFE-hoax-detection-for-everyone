@@ -18,12 +18,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         final result = await userLoginUsecase(data: event.data);
         result.fold((exception) {
           emit(LoginFailed(exception: exception));
-        }, (token) {
+        }, (success) {
           emit(LoginSuccess());
         });
       } catch (e) {
-        log(e.toString());
-        emit(LoginInitial());
+        log('masuk bloc ${e.toString()}');
+        emit(LoginFailed(exception: e as AppException));
       }
     });
   }

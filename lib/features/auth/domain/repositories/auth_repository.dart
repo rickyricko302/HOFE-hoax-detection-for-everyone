@@ -7,5 +7,5 @@ import '../../data/model/login_model_post.dart';
 abstract class AuthRepository {
   Future<Either<AppException, String>> register(
       {required RegisterModelPost data});
-  Future<Either<AppException, String>> login({required LoginModelPost data});
+  Future<Either<AppException, bool>> login({required LoginModelPost data});
 }

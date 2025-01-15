@@ -6,7 +6,6 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hofe/data/constant.dart';
 import 'package:hofe/features/auth/data/model/register_model_post.dart';
-import 'package:hofe/features/auth/presentation/views/login_page.dart';
 import 'package:hofe/shared-widgets/nunito_text.dart';
 import 'package:hofe/shared-widgets/primary_button.dart';
 import 'package:hofe/shared-widgets/text_field_forms.dart';
@@ -123,6 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 log(state.toString());
                 if (state is RegisterSuccess) {
                   ToastHelper.showSuccess(message: 'Berhasil mendaftar.');
+                  context.pop();
                 } else if (state is RegisterFailed) {
                   ToastHelper.showError(message: state.exception.messageError);
                 }
@@ -142,6 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
           username: usernameController.text,
           email: emailController.text,
           password: passwordController.text);
+      FocusScope.of(context).unfocus();
       context.read<RegisterBloc>().add(OnRegister(data: data));
     }
   }

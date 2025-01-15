@@ -9,8 +9,8 @@ class UserLoginUsecase {
 
   UserLoginUsecase({required this.authRepository});
 
-  Future<Either<AppException, String>> call(
+  Future<Either<AppException, bool>> call(
       {required LoginModelPost data}) async {
-    return authRepository.login(data: data);
+    return await authRepository.login(data: data);
   }
 }
