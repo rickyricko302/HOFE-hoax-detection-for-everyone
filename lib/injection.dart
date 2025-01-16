@@ -6,6 +6,7 @@ import 'package:hofe/features/auth/domain/repositories/auth_repository.dart';
 import 'package:hofe/features/auth/domain/usecase/user_register_usecase.dart';
 import 'package:hofe/features/auth/presentation/bloc/login/bloc/login_bloc.dart';
 import 'package:hofe/features/auth/presentation/bloc/register/register_bloc.dart';
+import 'package:hofe/features/home/presentation/cubit/home_navigation_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'features/auth/domain/usecase/user_login_usecase.dart';
@@ -19,6 +20,7 @@ Future<void> initGetIt() async {
   locator.registerLazySingleton(
       () => RegisterBloc(userRegisterUsecase: locator()));
   locator.registerLazySingleton(() => LoginBloc(userLoginUsecase: locator()));
+  locator.registerLazySingleton(() => HomeNavigationCubit());
 
   // usecase
   locator.registerLazySingleton(

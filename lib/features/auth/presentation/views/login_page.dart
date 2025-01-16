@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -7,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hofe/features/auth/data/model/login_model_post.dart';
 import 'package:hofe/features/auth/presentation/bloc/login/bloc/login_bloc.dart';
 import 'package:hofe/features/auth/presentation/views/register_page.dart';
+import 'package:hofe/features/home/presentation/views/home_page.dart';
 
 import '../../../../data/constant.dart';
 import '../../../../shared-widgets/nunito_text.dart';
@@ -115,6 +114,7 @@ class _LoginPageState extends State<LoginPage> {
               listener: (context, state) {
                 if (state is LoginSuccess) {
                   ToastHelper.showSuccess(message: 'Autentikasi Berhasil.');
+                  context.goNamed(HomePage.routeName);
                 } else if (state is LoginFailed) {
                   ToastHelper.showError(message: state.exception.messageError);
                 }

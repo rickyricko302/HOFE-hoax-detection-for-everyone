@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hofe/features/auth/data/datasource/auth_local_datasource.dart';
 import 'package:hofe/features/auth/presentation/views/login_page.dart';
-import 'package:hofe/features/auth/presentation/views/register_page.dart';
+import 'package:hofe/features/home/presentation/views/home_page.dart';
 
 import '../../../../injection.dart';
 
@@ -54,10 +56,12 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
   Future<void> ensureUserLogged() async {
     final AuthLocalDatasource authLocalDatasource = locator();
-    final isUserLogged = await authLocalDatasource.getToken() != null;
+    final String? token = await authLocalDatasource.getToken();
+    log("> token ${token.toString()}");
+    final isUserLogged = token != null;
     if (mounted) {
       if (isUserLogged) {
-        context.go(RegisterPage.routeName);
+        context.go(HomePage.routeName);
       } else {
         context.go(LoginPage.routeName);
       }

@@ -5,8 +5,8 @@ class ApiService {
     return {HttpHeaders.contentTypeHeader: 'application/json'};
   }
 
-  static String baseUrl = 'https://api-cc-hofe-production.up.railway.app/api';
+  static String baseUrl = 'https://api-cc-hofe-production.up.railway.app';
 
-  static String urlRegister = '$baseUrl/auth/register';
-  static String urlLogin = '$baseUrl/auth/login';
+  static String urlRegister = '$baseUrl/register';
+  static String urlLogin = '$baseUrl/login';
 }

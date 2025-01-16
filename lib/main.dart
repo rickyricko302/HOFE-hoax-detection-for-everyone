@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hofe/features/auth/presentation/bloc/login/bloc/login_bloc.dart';
 import 'package:hofe/features/auth/presentation/bloc/register/register_bloc.dart';
+import 'package:hofe/features/home/presentation/cubit/home_navigation_cubit.dart';
 import 'package:hofe/injection.dart';
 import 'package:hofe/router.dart';
 
@@ -20,11 +21,10 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => RegisterBloc(userRegisterUsecase: locator()),
+          create: (context) => locator<RegisterBloc>(),
         ),
-        BlocProvider(
-          create: (context) => LoginBloc(userLoginUsecase: locator()),
-        ),
+        BlocProvider(create: (context) => locator<LoginBloc>()),
+        BlocProvider(create: (context) => locator<HomeNavigationCubit>()),
       ],
       child: MaterialApp.router(
         routerConfig: routerConfig,

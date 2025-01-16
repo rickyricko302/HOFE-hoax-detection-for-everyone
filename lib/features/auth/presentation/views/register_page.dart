@@ -16,7 +16,7 @@ import '../bloc/register/register_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
-  static const routeName = 'register';
+  static const routeName = '/register';
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
