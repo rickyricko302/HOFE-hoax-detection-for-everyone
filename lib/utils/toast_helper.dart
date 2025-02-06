@@ -33,6 +33,7 @@ class ToastHelper {
     fToast.init(context);
     return fToast.showToast(
         toastDuration: const Duration(seconds: 4),
+        gravity: ToastGravity.TOP,
         child: Container(
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             decoration: BoxDecoration(

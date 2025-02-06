@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hofe/features/auth/data/datasource/auth_local_datasource.dart';
 import 'package:hofe/features/auth/presentation/views/login_page.dart';
-import 'package:hofe/features/home/presentation/views/home_page.dart';
+import 'package:hofe/features/hoax_news/presentation/views/home_page.dart';
 
 import '../../../../injection.dart';
 

@@ -22,7 +22,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emit(LoginSuccess());
         });
       } catch (e) {
-        log('masuk bloc ${e.toString()}');
+        log('> ${e.toString()}');
         emit(LoginFailed(exception: e as AppException));
       }
     });

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hofe/features/detect_hoax/presentations/views/detect_hoax_page.dart';
 
 import '../../../../../data/constant.dart';
 
@@ -10,7 +12,9 @@ class HomeFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        context.pushNamed(DetectHoaxPage.routeName);
+      },
       elevation: 0,
       backgroundColor: orange,
       tooltip: 'Hoax Detection',

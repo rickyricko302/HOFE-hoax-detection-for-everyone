@@ -1,12 +1,7 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
-import 'package:hofe/data/constant.dart';
-import 'package:hofe/features/home/presentation/cubit/home_navigation_cubit.dart';
-import 'package:hofe/features/home/presentation/views/widgets/home_view.dart';
-import 'package:hofe/shared-widgets/nunito_text.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:hofe/features/hoax_news/presentation/cubit/home_navigation_cubit.dart';
+import 'package:hofe/features/hoax_news/presentation/views/widgets/home_view.dart';
 
 import 'widgets/home_bottom_navigation.dart';
 import 'widgets/home_fab.dart';
@@ -39,8 +34,7 @@ class _HomePageState extends State<HomePage> {
           },
           child: PageView(
             controller: pageController,
-            physics: const NeverScrollableScrollPhysics(),
-            children: [HomeView(), Text('2')],
+            children: const [HomeView(), Text('2')],
           ),
         ),
         floatingActionButton: const HomeFab(),

@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hofe/features/auth/data/model/login_model_post.dart';
 import 'package:hofe/features/auth/presentation/bloc/login/bloc/login_bloc.dart';
 import 'package:hofe/features/auth/presentation/views/register_page.dart';
-import 'package:hofe/features/home/presentation/views/home_page.dart';
+import 'package:hofe/features/hoax_news/presentation/views/home_page.dart';
 
 import '../../../../data/constant.dart';
 import '../../../../shared-widgets/nunito_text.dart';

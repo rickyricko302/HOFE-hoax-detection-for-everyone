@@ -1,7 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hofe/features/home/presentation/cubit/home_navigation_cubit.dart';
+import 'package:hofe/features/hoax_news/presentation/cubit/home_navigation_cubit.dart';
 
 import '../../../../../data/constant.dart';
 import '../../../../../shared-widgets/nunito_text.dart';

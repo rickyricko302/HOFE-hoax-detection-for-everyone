@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_inappwebview: ^6.0.0
   flutter_svg: ^2.0.16
   fluttertoast: ^8.2.10
   gap: ^3.0.1
